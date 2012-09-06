@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  address: MyString
+  job_title: MyString
+  hire_date: 2012-09-06
+  termination_date: 2012-09-06
+  salary: 9.99
+  horary: MyString
+
+two:
+  name: MyString
+  address: MyString
+  job_title: MyString
+  hire_date: 2012-09-06
+  termination_date: 2012-09-06
+  salary: 9.99
+  horary: MyString
