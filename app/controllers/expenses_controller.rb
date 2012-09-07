@@ -1,3 +1,4 @@
+# coding: utf-8
 class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json

@@ -1,3 +1,4 @@
+# coding: utf-8
 class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json

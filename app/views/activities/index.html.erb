@@ -1,6 +1,6 @@
 <h1>Listing activities</h1>
 
-<table class="table">
+<table class="table table-bordered table-hover table-condensed">
   <tr>
     <th>Title</th>
     <th>Date</th>
@@ -24,5 +24,5 @@
 
 <br />
 
-<%= link_to 'New Activity', new_activity_path %>
+<%= link_to 'New Activity', new_activity_path, :class => "btn btn-success" %>
 <%= render 'layouts/links' %>

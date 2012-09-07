@@ -1,3 +1,4 @@
+# coding: utf-8
 class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json

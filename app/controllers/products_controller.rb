@@ -1,3 +1,4 @@
+# coding: utf-8
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.json

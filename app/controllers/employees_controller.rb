@@ -1,3 +1,4 @@
+# coding: utf-8
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json

@@ -1,3 +1,4 @@
+# coding: utf-8
 class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json

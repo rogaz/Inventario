@@ -1,3 +1,4 @@
+# coding: utf-8
 class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json

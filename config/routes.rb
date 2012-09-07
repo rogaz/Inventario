@@ -1,4 +1,8 @@
 Inventario::Application.routes.draw do
+  root :to => "Activities#index"
+
+  resources :users
+
   resources :expenses
 
   resources :activities
@@ -18,6 +22,12 @@ Inventario::Application.routes.draw do
   resources :products
 
   resources :product_types
+
+  resource  :user_session, :only => [:new, :create, :destroy]
+
+  delete "logout" => "user_sessions#destroy", :as => :logout
+
+  match "sign_in" => "User_sessions#new", :as => "signin"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

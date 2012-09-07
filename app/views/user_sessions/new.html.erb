@@ -1,0 +1,12 @@
+<% @desc_tit = "Inicia Sesión" %>
+
+<h2>Inicia Sesión</h2>
+<%= form_for(:user_session, :url => user_session_url) do |f| %>
+  <%= f.label :login %><br/>
+  <%= f.text_field :login %><br/><br/>
+  <%= f.label :password %><br/>
+  <%= f.password_field :password %><br/><br/>
+  
+  <%= f.submit "Inicia Sesión" %><br/><br/>
+  
+<% end %>
