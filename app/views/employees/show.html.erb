@@ -1,6 +1,21 @@
 <p id="notice"><%= notice %></p>
 <div id="content-show-employees">
 <table class="table table-bordered table-condensed">
+  <% if distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/days/] %>
+    <% dias = "dia(s)" %>
+  <% elsif anios = distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/month/] %>
+    <% meses = "mes(es)" %>
+  <% elsif anios = distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/year/] %>
+    <% anios = "año(s)" %>
+  <% end %>
+  <% cantidad = distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/[0-9]+/] %>
+  <% if dias != nil %>
+    <% tiempo_laborando = cantidad + " " + dias %>
+  <% elsif meses != nil %>
+    <% tiempo_laborando = cantidad + " " + meses %>
+  <% elsif anios != nil %>
+    <% tiempo_laborando = cantidad + " " + anios %>
+  <% end %>
   <tr>
     <td><b>Nombre</b></td>
     <td><%= @employee.name %></td>
@@ -15,7 +30,7 @@
   </tr>
   <tr>
     <td><b>Tiempo Laborando</b></td>
-    <td><%= time_ago_in_words(@employee.hire_date).humanize %> </td>
+    <td><%= tiempo_laborando %> </td>
   </tr>
   <tr>
     <td><b>Fecha de Contratación</b></td>

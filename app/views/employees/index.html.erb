@@ -14,21 +14,38 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @employees.each do |employee| %>
+  <% if distance_of_time_in_words(Time.now.to_date, employee.hire_date)[/days/] %>
+    <% dias = "dia(s)" %>
+  <% elsif anios = distance_of_time_in_words(Time.now.to_date, employee.hire_date)[/month/] %>
+    <% meses = "mes(es)" %>
+  <% elsif anios = distance_of_time_in_words(Time.now.to_date, employee.hire_date)[/year/] %>
+    <% anios = "año(s)" %>
+  <% end %>
+  <% cantidad = distance_of_time_in_words(Time.now.to_date, employee.hire_date)[/[0-9]+/] %>
+  <% if dias != nil %>
+    <% tiempo_laborando = cantidad + " " + dias %>
+  <% elsif meses != nil %>
+    <% tiempo_laborando = cantidad + " " + meses %>
+  <% elsif anios != nil %>
+    <% tiempo_laborando = cantidad + " " + anios %>
+  <% end %>
   <tr>
     <td><%= employee.name %></td>
     <td><%= employee.address %></td>
     <td><%= employee.job_title %></td>
-    <td><%= distance_of_time_in_words(Time.now, employee.hire_date).humanize %></td>
-    <td><%= employee.hire_date %></td>
+    <td><%= tiempo_laborando %></td>
+    <td><%= fecha_con_formato(employee.hire_date) %></td>
     <td><%= employee.termination_date %></td>
     <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>
     <td><%= link_to 'Show', employee %></td>
     <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
     <td><%= link_to 'Destroy', employee, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= button_to "Liquidar", { :action => "liquidar", :id => employee.id }, confirm: 'Are you sure?', method: :put, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>

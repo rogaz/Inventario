@@ -4,6 +4,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
@@ -41,9 +42,7 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
-    if @employee.hire_date == @employee.termination_date
-      @employee.termination_date = nil
-    end
+
     respond_to do |format|
       if @employee.save
         format.html { redirect_to employees_url, notice: 'Employee was successfully created.' }
@@ -59,9 +58,7 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
-    if @employee.hire_date == @employee.termination_date
-      @employee.termination_date = nil
-    end
+
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
@@ -84,4 +81,23 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def liquidar
+    @employee = Employee.find(params[:id])
+    @employee.termination_date = Time.now
+    @employee.save
+
+    respond_to do |format|
+      format.html { redirect_to employees_url }
+      format.json { head :no_content }
+    end
+  end
+
 end
+  
+
+
+#    <tr>
+#      <td><%= f.label "Fecha de Liquidación" %></td>
+#      <td><%= f.date_select :termination_date %></td>
+#    </tr>
