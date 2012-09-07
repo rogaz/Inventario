@@ -1,40 +1,41 @@
 <p id="notice"><%= notice %></p>
+<div id="content-show-employees">
+<table class="table table-bordered table-condensed">
+  <tr>
+    <td><b>Nombre</b></td>
+    <td><%= @employee.name %></td>
+  </tr>
+  <tr>
+    <td><b>Direccion</b></td>
+    <td><%= @employee.address %></td>
+  </tr>
+  <tr>
+    <td><b>Puesto Laboral</b></td>
+    <td><%= @employee.job_title %></td>
+  </tr>
+  <tr>
+    <td><b>Tiempo Laborando</b></td>
+    <td><%= time_ago_in_words(@employee.hire_date).humanize %> </td>
+  </tr>
+  <tr>
+    <td><b>Fecha de Contratación</b></td>
+    <td><%= @employee.hire_date %></td>
+  </tr>
+  <tr>
+    <td><b>Fecha de Liquidación</b></td>
+    <td><%= @employee.termination_date %></td>
+  </tr>
+  <tr>
+    <td><b>Salario</b></td>
+    <td><%= @employee.salary %></td>
+  </tr>
+  <tr>
+    <td><b>Horario</b></td>
+    <td><%= @employee.horary %></td>
+  </tr>
 
-<p>
-  <b>Name:</b>
-  <%= @employee.name %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @employee.address %>
-</p>
-
-<p>
-  <b>Job title:</b>
-  <%= @employee.job_title %>
-</p>
-
-<p>
-  <b>Hire date:</b>
-  <%= @employee.hire_date %>
-</p>
-
-<p>
-  <b>Termination date:</b>
-  <%= @employee.termination_date %>
-</p>
-
-<p>
-  <b>Salary:</b>
-  <%= @employee.salary %>
-</p>
-
-<p>
-  <b>Horary:</b>
-  <%= @employee.horary %>
-</p>
-
+</table>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>
+</div>

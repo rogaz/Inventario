@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
 */
+#content-table-employees{
+    width: 750px;
+    margin: 0px auto;
+}
+
+#content-show-employees{
+    width: 400px;
+    margin: 0px auto;
+}

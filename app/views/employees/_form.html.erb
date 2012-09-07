@@ -10,37 +10,43 @@
       </ul>
     </div>
   <% end %>
+<table>
+    <tr>
+      <td><%= f.label "Nombre" %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Dirección" %></td>
+      <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Puesto Laboral" %></td>
+      <td><%= f.text_field :job_title %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Fecha de Contratación" %></td>
+      <td><%= f.date_select :hire_date %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Fecha de Liquidación" %></td>
+      <td><%= f.date_select :termination_date %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "Salario" %></td>
+      <td><%= f.text_field :salary %></td>
+    </tr>
   
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :job_title %><br />
-    <%= f.text_field :job_title %>
-  </div>
-  <div class="field">
-    <%= f.label :hire_date %><br />
-    <%= f.date_select :hire_date %>
-  </div>
-  <div class="field">
-    <%= f.label :termination_date %><br />
-    <%= f.date_select :termination_date %>
-  </div>
-  <div class="field">
-    <%= f.label :salary %><br />
-    <%= f.text_field :salary %>
-  </div>
-  <div class="field">
-    <%= f.label :horary %><br />
-    <%= f.text_field :horary %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+    <tr>
+      <td><%= f.label "Horario" %></td>
+      <td><%= f.text_field :horary %></td>
+    </tr>
+  
+  
+    <tr>
+      <td><%= f.submit :value => "Guardar Empleado", :class => "btn btn-success" %></td>
+      <td></td>
+    </tr>
+  
+</table>
 <% end %>

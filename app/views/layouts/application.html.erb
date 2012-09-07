@@ -4,12 +4,11 @@
   <title>Inventario</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-  <link href="app/assets/stylesheets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"></link>
+  
   <%= csrf_meta_tags %>
 </head>
-<body style="margin-top: 60px;">
-  <div style="width: 500px; margin: 0 auto;">
+<body>
+  <div style="width: 800px; padding-bottom: 40px; margin: 0 auto;">
 <%= yield %>
   </div>
 </body>

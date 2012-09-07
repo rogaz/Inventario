@@ -1,14 +1,16 @@
-<h1>Listing employees</h1>
+<div>
+<h1>Lista de Empleados</h1>
 
-<table class="table">
+<table class="table table-bordered table-hover table-condensed">
   <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Job title</th>
-    <th>Hire date</th>
-    <th>Termination date</th>
-    <th>Salary</th>
-    <th>Horary</th>
+    <th>Nombre</th>
+    <th>Dirección</th>
+    <th>Puesto Laboral</th>
+    <th>Tiempo Laborando</th>
+    <th>Fecha de Contratación</th>
+    <th>Fecha de Liquidación</th>
+    <th>Salario</th>
+    <th>Horario</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,9 +21,10 @@
     <td><%= employee.name %></td>
     <td><%= employee.address %></td>
     <td><%= employee.job_title %></td>
+    <td><%= distance_of_time_in_words(Time.now, employee.hire_date).humanize %></td>
     <td><%= employee.hire_date %></td>
     <td><%= employee.termination_date %></td>
-    <td><%= employee.salary %></td>
+    <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>
     <td><%= link_to 'Show', employee %></td>
     <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
@@ -34,3 +37,4 @@
 
 <%= link_to 'New Employee', new_employee_path, :class => "btn btn-success" %>
 <%= render 'layouts/links' %>
+</div>

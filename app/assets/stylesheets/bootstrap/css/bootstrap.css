@@ -913,6 +913,7 @@ textarea {
 label {
   display: block;
   margin-bottom: 5px;
+  width: 150px;
 }
 
 select,
@@ -1037,7 +1038,7 @@ input[type="file"] {
 }
 
 select {
-  width: 220px;
+  width: 190px;
   background-color: #ffffff;
   border: 1px solid #bbb;
 }

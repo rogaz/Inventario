@@ -4,7 +4,6 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }
@@ -42,11 +41,13 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
-
+    if @employee.hire_date == @employee.termination_date
+      @employee.termination_date = nil
+    end
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render json: @employee, status: :created, location: @employee }
+        format.html { redirect_to employees_url, notice: 'Employee was successfully created.' }
+        format.json { render json: employees_url, status: :created, location: @employee }
       else
         format.html { render action: "new" }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
@@ -58,7 +59,9 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
-
+    if @employee.hire_date == @employee.termination_date
+      @employee.termination_date = nil
+    end
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
