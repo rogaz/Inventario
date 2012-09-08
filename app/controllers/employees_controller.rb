@@ -47,7 +47,8 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employees_url, notice: 'Employee was successfully created.' }
+        flash[:success] = 'El empleado se creó correctamente.'
+        format.html { redirect_to employees_url }
         format.json { render json: employees_url, status: :created, location: @employee }
       else
         format.html { render action: "new" }
@@ -60,16 +61,20 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
-    hire_date = DateTime.civil(params[:employee]['hire_date(1i)'].to_i, params[:employee]['hire_date(2i)'].to_i, params[:employee]['hire_date(3i)'].to_i).to_date
-    #if @employee.termination_date < params[:hire_date]
-      #redirect_to @employee, notice: 'La fecha de contratación no puede ser mayor a la fecha de despido'
-    #end
+    anio = params[:employee]['hire_date(1i)'].to_i
+    mes = params[:employee]['hire_date(2i)'].to_i
+    dia = params[:employee]['hire_date(3i)'].to_i
+    hire_date = DateTime.civil(anio, mes, dia).to_date
 
     respond_to do |format|
-      if hire_date > @employee.termination_date
-        format.html {redirect_to @employee, notice: 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'}
+      if @employee.termination_date  != nil
+        if hire_date > @employee.termination_date
+          flash[:notice] = 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'
+          format.html {redirect_to @employee}
+        end
       elsif @employee.update_attributes(params[:employee])
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
+        flash[:success] = 'El empleado se actualizó correctamente.'
+        format.html { redirect_to @employee }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

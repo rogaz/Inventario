@@ -1,6 +1,11 @@
 <div>
-<h1>Lista de Empleados</h1>
+  
+<% flash.each do |key, value| %>
+  <div id="flash" class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 
+<h1>Lista de Empleados</h1>
+<%= link_to 'Empleado Nuevo', new_employee_path, :class => "btn btn-info", :style => "margin-bottom: 10px;" %>
 <table class="table table-bordered table-hover table-condensed">
   <tr>
     <th>Nombre</th>
@@ -10,6 +15,7 @@
     <th>Fecha de Contratación</th>
     <th>Salario</th>
     <th>Horario</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -43,16 +49,17 @@
     <td><%= fecha_con_formato(employee.hire_date) %></td>
     <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>
-    <td><%= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= button_to "Liquidar", { :action => "liquidar", :id => employee.id }, confirm: 'Are you sure?', method: :put, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Detalles', employee, :class => "btn btn-primary"  %></td>
+    <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-warning"  %></td>
+    <td><%= link_to 'Liquidar', { :action => "liquidar", :id => employee.id }, confirm: 'Are you sure?', method: :put, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Eliminar', employee, confirm: "¿Desea eliminar empleado?", method: :delete %> </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Empleados Liquidados', liquidados_path, :class => "btn btn-info" %>
-<%= link_to 'New Employee', new_employee_path, :class => "btn btn-success" %>
+<%= link_to 'Empleados Liquidados', liquidados_path, :class => "btn btn-primary" %>
+
 <%= render 'layouts/links' %>
 </div>

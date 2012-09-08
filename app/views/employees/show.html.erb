@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+  <div id="flash" class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<h1><%= @employee.name %></h1>
 <div id="content-show-employees">
 <table class="table table-bordered table-condensed">
   <% if @employee.termination_date == nil %>
@@ -21,10 +25,7 @@
   <% elsif anios != nil %>
     <% tiempo_laborando = cantidad + " " + anios %>
   <% end %>
-  <tr>
-    <td><b>Nombre</b></td>
-    <td><%= @employee.name %></td>
-  </tr>
+  
   <tr>
     <td><b>Direccion</b></td>
     <td><%= @employee.address %></td>
@@ -58,6 +59,10 @@
 
 </table>
 
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Editar', edit_employee_path(@employee), :class => "btn btn-warning" %> |
+<% if is_fire? %>
+  <%= link_to 'Empleados Liquidados', liquidados_path, :class => "btn btn-primary" %>
+<% else %>
+  <%= link_to 'Empleados Contratados', employees_path, :class => "btn btn-primary" %>
+<% end %>
 </div>

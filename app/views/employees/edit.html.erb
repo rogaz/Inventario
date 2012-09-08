@@ -1,6 +1,9 @@
-<h1>Editing employee</h1>
-
+<h1>Editando Empleado</h1>
 <%= render 'form' %>
 
-<%= link_to 'Show', @employee %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Detalles', @employee, :class => "btn btn-primary" %> |
+<% if is_fire? %>
+  <%= link_to 'Empleados Liquidados', liquidados_path, :class => "btn btn-primary" %>
+<% else %>
+  <%= link_to 'Empleados Contratados', employees_path, :class => "btn btn-primary" %>
+<% end %>

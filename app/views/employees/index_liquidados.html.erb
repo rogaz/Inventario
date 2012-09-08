@@ -42,14 +42,14 @@
     <td><%= fecha_con_formato(employee.termination_date) %></td>
     <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>
-    <td><%= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+    <td><%= link_to 'Detalles', employee, :class => "btn btn-primary" %></td>
+    <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-warning" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Empleados Laborando', employees_path, :class => "btn btn-info" %>
+<%= link_to 'Empleados Laborando', employees_path, :class => "btn btn-primary" %>
 <%= render 'layouts/links' %>
 </div>
