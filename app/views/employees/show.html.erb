@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
 <div id="content-show-employees">
 <table class="table table-bordered table-condensed">
-  <% if distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/days/] %>
+  <% if @employee.termination_date == nil %>
+    <% diferencia_de_tiempo = distance_of_time_in_words(Time.now.to_date, @employee.hire_date) %>
+  <% else %>
+    <% diferencia_de_tiempo = distance_of_time_in_words(@employee.termination_date, @employee.hire_date) %>
+  <% end %>
+  <% if diferencia_de_tiempo[/days/] %>
     <% dias = "dia(s)" %>
-  <% elsif anios = distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/month/] %>
+  <% elsif diferencia_de_tiempo[/month/] %>
     <% meses = "mes(es)" %>
-  <% elsif anios = distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/year/] %>
+  <% elsif diferencia_de_tiempo[/year/] %>
     <% anios = "año(s)" %>
   <% end %>
-  <% cantidad = distance_of_time_in_words(Time.now.to_date, @employee.hire_date)[/[0-9]+/] %>
+  <% cantidad = diferencia_de_tiempo[/[0-9]+/] %>
   <% if dias != nil %>
     <% tiempo_laborando = cantidad + " " + dias %>
   <% elsif meses != nil %>
@@ -34,12 +39,14 @@
   </tr>
   <tr>
     <td><b>Fecha de Contratación</b></td>
-    <td><%= @employee.hire_date %></td>
+    <td><%= fecha_con_formato(@employee.hire_date) %></td>
   </tr>
+  <% if is_fire? %>
   <tr>
     <td><b>Fecha de Liquidación</b></td>
-    <td><%= @employee.termination_date %></td>
+    <td><%= fecha_con_formato(@employee.termination_date) %></td>
   </tr>
+  <% end %>
   <tr>
     <td><b>Salario</b></td>
     <td><%= @employee.salary %></td>

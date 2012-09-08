@@ -30,6 +30,8 @@ Inventario::Application.routes.draw do
   match "sign_in" => "User_sessions#new", :as => "signin"
 
   put "liquidar" => "employees#liquidar", :as => :liquidar
+
+  get "liquidados" => "employees#index_liquidados", :as => :liquidados
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

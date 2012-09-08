@@ -1,24 +1,22 @@
 <div>
-<h1>Lista de Empleados</h1>
+<h1>Empleados Liquidados</h1>
 
 <table class="table table-bordered table-hover table-condensed">
   <tr>
     <th>Nombre</th>
     <th>Dirección</th>
     <th>Puesto Laboral</th>
-    <th>Tiempo Laborando</th>
+    <th>Tiempo Que Laboró</th>
     <th>Fecha de Contratación</th>
+    <th>Fecha de Liquidación</th>
     <th>Salario</th>
     <th>Horario</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @employees.each do |employee| %>
-
-  
-  <% diferencia_de_tiempo = distance_of_time_in_words(Time.now.to_date, employee.hire_date) %>
+  <% diferencia_de_tiempo = distance_of_time_in_words(employee.termination_date, employee.hire_date) %>
   <% if diferencia_de_tiempo[/day/] %>
     <% dias = "dia(s)" %>
   <% elsif diferencia_de_tiempo[/month/] %>
@@ -41,18 +39,17 @@
     <td><%= employee.job_title %></td>
     <td><%= tiempo_laborando %></td>
     <td><%= fecha_con_formato(employee.hire_date) %></td>
+    <td><%= fecha_con_formato(employee.termination_date) %></td>
     <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>
     <td><%= link_to 'Show', employee %></td>
     <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= button_to "Liquidar", { :action => "liquidar", :id => employee.id }, confirm: 'Are you sure?', method: :put, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Empleados Liquidados', liquidados_path, :class => "btn btn-info" %>
-<%= link_to 'New Employee', new_employee_path, :class => "btn btn-success" %>
+<%= link_to 'Empleados Laborando', employees_path, :class => "btn btn-info" %>
 <%= render 'layouts/links' %>
 </div>

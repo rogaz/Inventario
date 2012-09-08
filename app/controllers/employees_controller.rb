@@ -2,8 +2,10 @@
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
+
+
   def index
-    @employees = Employee.all
+    @employees = Employee.where(:termination_date => nil)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -58,9 +60,15 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
+    hire_date = DateTime.civil(params[:employee]['hire_date(1i)'].to_i, params[:employee]['hire_date(2i)'].to_i, params[:employee]['hire_date(3i)'].to_i).to_date
+    #if @employee.termination_date < params[:hire_date]
+      #redirect_to @employee, notice: 'La fecha de contratación no puede ser mayor a la fecha de despido'
+    #end
 
     respond_to do |format|
-      if @employee.update_attributes(params[:employee])
+      if hire_date > @employee.termination_date
+        format.html {redirect_to @employee, notice: 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'}
+      elsif @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
         format.json { head :no_content }
       else
@@ -88,16 +96,17 @@ class EmployeesController < ApplicationController
     @employee.save
 
     respond_to do |format|
-      format.html { redirect_to employees_url }
+      format.html { redirect_to @employee, :notice => "Se a liquidado a " + @employee.name.to_s }
       format.json { head :no_content }
     end
   end
 
+  def index_liquidados
+    @employees = Employee.where("termination_date IS NOT NULL") #order("termination_date asc", "name asc" )
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @employees }
+    end
+  end
 end
-  
-
-
-#    <tr>
-#      <td><%= f.label "Fecha de Liquidación" %></td>
-#      <td><%= f.date_select :termination_date %></td>
-#    </tr>
