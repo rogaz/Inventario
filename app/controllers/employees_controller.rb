@@ -61,13 +61,15 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
-    anio = params[:employee]['hire_date(1i)'].to_i
-    mes = params[:employee]['hire_date(2i)'].to_i
-    dia = params[:employee]['hire_date(3i)'].to_i
-    hire_date = DateTime.civil(anio, mes, dia).to_date
+    if @employee.termination_date ==! nil
+      anio = params[:employee]['hire_date(1i)'].to_i
+      mes = params[:employee]['hire_date(2i)'].to_i
+      dia = params[:employee]['hire_date(3i)'].to_i
+      hire_date = DateTime.civil(anio, mes, dia)
+    end
 
     respond_to do |format|
-      if @employee.termination_date != nil
+      if @employee.termination_date ==! nil
         if hire_date > @employee.termination_date
           flash[:notice] = 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'
           format.html {redirect_to @employee}
