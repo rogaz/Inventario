@@ -67,7 +67,7 @@ class EmployeesController < ApplicationController
     hire_date = DateTime.civil(anio, mes, dia).to_date
 
     respond_to do |format|
-      if @employee.termination_date  != nil
+      if @employee.termination_date != nil
         if hire_date > @employee.termination_date
           flash[:notice] = 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'
           format.html {redirect_to @employee}
@@ -114,4 +114,5 @@ class EmployeesController < ApplicationController
       format.json { render json: @employees }
     end
   end
+  
 end

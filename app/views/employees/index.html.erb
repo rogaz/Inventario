@@ -51,7 +51,7 @@
     <td><%= employee.horary %></td>
     <td><%= link_to 'Detalles', employee, :class => "btn btn-primary"  %></td>
     <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-warning"  %></td>
-    <td><%= link_to 'Liquidar', { :action => "liquidar", :id => employee.id }, confirm: 'Are you sure?', method: :put, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Liquidar', { :action => "liquidar", :id => employee.id }, confirm: '¿Desea liquidar a ' + employee.name + '?', method: :put, :class => "btn btn-danger" %></td>
     <td><%= link_to 'Eliminar', employee, confirm: "¿Desea eliminar empleado?", method: :delete %> </td>
   </tr>
 <% end %>

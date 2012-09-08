@@ -13,6 +13,7 @@
     <th>Horario</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @employees.each do |employee| %>
@@ -44,6 +45,7 @@
     <td><%= employee.horary %></td>
     <td><%= link_to 'Detalles', employee, :class => "btn btn-primary" %></td>
     <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-warning" %></td>
+    <td><%= link_to 'Eliminar', employee, confirm: "¿Desea eliminar empleado?", method: :delete %> </td>
   </tr>
 <% end %>
 </table>
