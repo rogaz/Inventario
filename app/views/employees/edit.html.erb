@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+  <div id="flash" class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1>Editando Empleado</h1>
 <%= render 'form' %>
 

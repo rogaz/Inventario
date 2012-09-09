@@ -61,19 +61,24 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
-    if @employee.termination_date ==! nil
+    
+    unless @employee.termination_date == nil
       anio = params[:employee]['hire_date(1i)'].to_i
       mes = params[:employee]['hire_date(2i)'].to_i
       dia = params[:employee]['hire_date(3i)'].to_i
       hire_date = DateTime.civil(anio, mes, dia)
+      validar_fecha(hire_date)
+      if hire_date > @employee.termination_date
+        guardar = false
+      else
+        guardar = true
+      end
     end
 
     respond_to do |format|
-      if @employee.termination_date ==! nil
-        if hire_date > @employee.termination_date
-          flash[:notice] = 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'
-          format.html {redirect_to @employee}
-        end
+      if guardar == false
+        flash[:notice] = 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'
+        format.html { render action: "edit" }
       elsif @employee.update_attributes(params[:employee])
         flash[:success] = 'El empleado se actualizó correctamente.'
         format.html { redirect_to @employee }
@@ -116,5 +121,22 @@ class EmployeesController < ApplicationController
       format.json { render json: @employees }
     end
   end
-  
+
+private
+  def validar_fecha(fecha)
+    anio = fecha.year
+    mes = fecha.month
+    dia = fecha.day
+
+    if anio%4 == 0
+      if (mes == 4 || mes == 6 || mes == 11) && (dia > 30)
+        print "false\n"
+      elsif mes == 2 && dia > 29
+        print "false\n"
+      else
+        print "true\n"
+      end
+      print dia.to_s + " " + mes.to_s + " " + anio.to_s + " es viciesto"
+    end
+  end
 end
