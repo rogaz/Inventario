@@ -66,17 +66,24 @@ class EmployeesController < ApplicationController
       anio = params[:employee]['hire_date(1i)'].to_i
       mes = params[:employee]['hire_date(2i)'].to_i
       dia = params[:employee]['hire_date(3i)'].to_i
-      hire_date = DateTime.civil(anio, mes, dia)
-      validar_fecha(hire_date)
-      if hire_date > @employee.termination_date
-        guardar = false
-      else
-        guardar = true
+      if res_val = validar_fecha(anio, mes, dia)
+        hire_date = DateTime.civil(anio, mes, dia)
+        if hire_date > @employee.termination_date
+          guardar = false
+        else
+          guardar = true
+        end
       end
+      
     end
 
     respond_to do |format|
-      if guardar == false
+      if res_val == false
+        meses = "Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre".split(" ")
+        mes = meses[mes-1]
+        flash[:error] = ' La fecha ' + dia.to_s + '/' + mes.to_s + '/' + anio.to_s + ' no existe.'
+        format.html { render action: "edit" }
+      elsif guardar == false
         flash[:notice] = 'La fecha de contratación no puede ser mayor a la fecha de liquidación.'
         format.html { render action: "edit" }
       elsif @employee.update_attributes(params[:employee])
@@ -123,20 +130,33 @@ class EmployeesController < ApplicationController
   end
 
 private
-  def validar_fecha(fecha)
-    anio = fecha.year
-    mes = fecha.month
-    dia = fecha.day
-
+  def validar_fecha(anio, mes, dia)
     if anio%4 == 0
-      if (mes == 4 || mes == 6 || mes == 11) && (dia > 30)
+      if (mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30)
         print "false\n"
+        return false
       elsif mes == 2 && dia > 29
         print "false\n"
+        return false
       else
         print "true\n"
+        return true
       end
       print dia.to_s + " " + mes.to_s + " " + anio.to_s + " es viciesto"
+    else
+      if (mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30)
+        print "false\n"
+        return false
+      elsif mes == 2 && dia > 28
+        print "false\n"
+        return false
+      else
+        print "true\n"
+        return true
+      end
+      print dia.to_s + " " + mes.to_s + " " + anio.to_s + " no es viciesto"
     end
   end
+
+
 end
