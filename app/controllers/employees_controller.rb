@@ -131,31 +131,20 @@ class EmployeesController < ApplicationController
 
 private
   def validar_fecha(anio, mes, dia)
-    if anio%4 == 0
-      if (mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30)
-        print "false\n"
-        return false
-      elsif mes == 2 && dia > 29
-        print "false\n"
+    if (mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30)
+      return false
+    elsif anio%4 == 0
+      if mes == 2 && dia > 29
         return false
       else
-        print "true\n"
         return true
       end
-      print dia.to_s + " " + mes.to_s + " " + anio.to_s + " es viciesto"
+    elsif mes == 2 && dia > 28
+      return false
     else
-      if (mes == 4 || mes == 6 || mes == 9 || mes == 11) && (dia > 30)
-        print "false\n"
-        return false
-      elsif mes == 2 && dia > 28
-        print "false\n"
-        return false
-      else
-        print "true\n"
-        return true
-      end
-      print dia.to_s + " " + mes.to_s + " " + anio.to_s + " no es viciesto"
+      return true
     end
+
   end
 
 
