@@ -45,13 +45,13 @@
     <td><%= employee.name %></td>
     <td><%= employee.address %></td>
     <td><%= employee.job_title %></td>
-    <td><%= tiempo_laborando %></td>
+    <td><%= distance_of_time_in_words(Time.now.to_date, employee.hire_date) %></td>
     <td><%= fecha_con_formato(employee.hire_date) %></td>
     <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>
-    <td><%= link_to 'Detalles', employee, :class => "btn btn-primary"  %></td>
-    <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-warning"  %></td>
-    <td><%= link_to 'Liquidar', { :action => "liquidar", :id => employee.id }, confirm: '¿Desea liquidar a ' + employee.name + '?', method: :put, :class => "btn btn-danger" %></td>
+    <td><%= link_to 'Detalles', employee, :class => "btn btn-small btn-primary"  %></td>
+    <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-small btn-warning"  %></td>
+    <td><%= link_to 'Liquidar', { :action => "liquidar", :id => employee.id }, confirm: '¿Desea liquidar a ' + employee.name + '?', method: :put, :class => "btn btn-small btn-danger" %></td>
     <td><%= link_to 'Eliminar', employee, confirm: "¿Desea eliminar empleado?", method: :delete %> </td>
   </tr>
 <% end %>
