@@ -9,11 +9,12 @@
     <th></th>
   </tr>
 
+
 <% @products.each do |product| %>
   <tr>
     <td><%= product.size %></td>
-    <td><%= product.product_type_id %></td>
-    <td><%= link_to 'Show', product %></td>
+    <td><%= product.product_type.type_of_products %></td>
+    <td><%= link_to 'Show', product%></td>
     <td><%= link_to 'Edit', edit_product_path(product) %></td>
     <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

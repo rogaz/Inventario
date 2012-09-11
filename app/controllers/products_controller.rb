@@ -4,6 +4,8 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @product_types= ProductType.all
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +28,7 @@ class ProductsController < ApplicationController
   # GET /products/new.json
   def new
     @product = Product.new
+    @product_types= ProductType.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +39,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
+    @product_types= ProductType.all
   end
 
   # POST /products
