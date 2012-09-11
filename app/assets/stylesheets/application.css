@@ -26,6 +26,12 @@
     margin: 0px auto;
 }
 
+#logo{
+    background-image: url("logo.png");
+    width: 100px;
+    height: 100px;
+}
+
 #flash{
     width: 100%;
     margin: 0 auto;
