@@ -9,4 +9,9 @@ module ApplicationHelper
     end
   end
 
+  def active_barra_superior
+    @modelo_actual
+
+  end
+
 end

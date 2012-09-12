@@ -4,6 +4,7 @@ class StocksController < ApplicationController
   # GET /stocks.json
   def index
     @stocks = Stock.all
+    @modelo_actual = "stocks"
 
     respond_to do |format|
       format.html # index.html.erb

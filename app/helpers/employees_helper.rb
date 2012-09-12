@@ -8,4 +8,9 @@ module EmployeesHelper
     end
   end
 
+  def obtener_diferencia(fecha1, fecha2)
+    diferencia = (fecha1-fecha2)
+    return diferencia.numerator.to_s + " dias"
+  end
+
 end

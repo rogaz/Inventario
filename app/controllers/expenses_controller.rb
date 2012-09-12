@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
     @expenses = Expense.all
+    @modelo_actual = "expenses"
 
     respond_to do |format|
       format.html # index.html.erb

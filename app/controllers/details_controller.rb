@@ -4,6 +4,7 @@ class DetailsController < ApplicationController
   # GET /details.json
   def index
     @details = Detail.all
+    @modelo_actual = "details"
 
     respond_to do |format|
       format.html # index.html.erb

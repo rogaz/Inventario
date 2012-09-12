@@ -4,6 +4,7 @@ class ProductTypesController < ApplicationController
   # GET /product_types.json
   def index
     @product_types = ProductType.all
+    @modelo_actual = "product_types"
 
     respond_to do |format|
       format.html # index.html.erb

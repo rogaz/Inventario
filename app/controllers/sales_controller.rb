@@ -4,6 +4,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     @sales = Sale.all
+    @modelo_actual = "sales"
 
     respond_to do |format|
       format.html # index.html.erb

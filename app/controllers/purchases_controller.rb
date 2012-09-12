@@ -4,6 +4,7 @@ class PurchasesController < ApplicationController
   # GET /purchases.json
   def index
     @purchases = Purchase.all
+    @modelo_actual = "purchases"
 
     respond_to do |format|
       format.html # index.html.erb

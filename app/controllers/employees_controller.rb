@@ -6,7 +6,8 @@ class EmployeesController < ApplicationController
 
   def index
     @employees = Employee.where(:termination_date => nil)
-    
+    @modelo_actual = "employees"
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @employees }

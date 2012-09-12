@@ -45,7 +45,7 @@
     <td><%= employee.name %></td>
     <td><%= employee.address %></td>
     <td><%= employee.job_title %></td>
-    <td><%= distance_of_time_in_words(Time.now.to_date, employee.hire_date) %></td>
+    <td><%= obtener_diferencia(Time.now.to_date, employee.hire_date) %></td>
     <td><%= fecha_con_formato(employee.hire_date) %></td>
     <td><%= "$" + employee.salary.to_s %></td>
     <td><%= employee.horary %></td>

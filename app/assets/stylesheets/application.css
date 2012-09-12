@@ -27,9 +27,14 @@
 }
 
 #logo{
-    background-image: url("logo.png");
-    width: 100px;
-    height: 100px;
+    width: 45px;
+    height: 45px;
+    padding: 5px 15px 5px 5px;
+    float: right;
+}
+
+#barra-superior li{
+    padding-top: 15px;
 }
 
 #flash{

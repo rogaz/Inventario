@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @product_types= ProductType.all
-
+    @modelo_actual = "products"
 
     respond_to do |format|
       format.html # index.html.erb
