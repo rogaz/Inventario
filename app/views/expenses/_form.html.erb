@@ -1,6 +1,6 @@
 <script >
     $(function() {
-        $( "#datepicker" ).datepicker({ dateFormat: "d MM, y" });
+        $( "#datepicker" ).datepicker({ dateFormat: "DD, d MM, yy" });
     });
 </script>
 
@@ -16,20 +16,21 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+<div class="form-horizontal">
+  <div class="control-group">
+    <div class="control-label"><%= f.label "Descripción" %></div>
+    <div class="controls"><%= f.text_field :description %></div>
   </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.text_field :date, :id => "datepicker" %>
+  <div class="control-group">
+    <div class="control-label"><%= f.label "Fecha" %></div>
+    <div class="controls"><%= f.text_field :date, :id => "datepicker" %></div>
   </div>
-  <div class="field">
-    <%= f.label :total %><br />
-    <%= f.text_field :total %>
+  <div class="control-group">
+    <div class="control-label"><%= f.label "Total" %></div>
+    <div class="controls"><%= f.text_field :total %></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <div class="controls"><%= f.submit :class => "btn btn-success" %></div>
   </div>
+</div>
 <% end %>
