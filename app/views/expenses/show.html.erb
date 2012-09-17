@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Description:</b>
-  <%= @expense.description %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @expense.date %>
-</p>
-
-<p>
-  <b>Total:</b>
-  <%= @expense.total %>
-</p>
-
-
-<%= link_to 'Edit', edit_expense_path(@expense) %> |
-<%= link_to 'Back', expenses_path %>
+<%= link_to 'Gastos', expenses_path, :class => "btn btn-info" %>
+<div id="content-show-expenses">
+<table class="table table-bordered table-condensed">
+  <tr>
+    <td><b>Descripción</b></td>
+    <td><%= @expense.description %></td>
+  </tr>
+  <tr>
+    <td><b>Fecha</b></td>
+    <td><%= fecha_con_formato(@expense.date) %></td>
+  </tr>
+  <tr>
+    <td><b>Total</b></td>
+    <td><%= @expense.total %></td>
+  </tr>
+</table>
+<%= link_to 'Editar', edit_expense_path(@expense), :class => "btn btn-warning" %>
+</div>

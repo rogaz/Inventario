@@ -1,0 +1,16 @@
+<%= link_to 'Gastos', expenses_path, :class => "btn btn-info" %>
+<% @expenses.sort.reverse.each do |monthyear, expenses| %>
+  <h2><%= monthyear %></h2>
+  <% total = 0 %>
+  <% for expense in expenses %>
+    <% total += expense.total %>
+    <table class="table table-condensed">
+      <tr>
+        <td><%= expense.description %></td>
+        <td><%= fecha_con_formato(expense.date) %></td>
+        <td><%= expense.total %></td>
+      </tr>
+    </table>
+  <% end %>
+  <div class="total">Total <%= total %></div>
+<% end %>

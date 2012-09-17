@@ -3,8 +3,8 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
     @modelo_actual = "expenses"
+    @expenses = Expense.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +46,8 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        flash[:success] = 'Gasto Creado Correctamente'
+        format.html { redirect_to expenses_path }
         format.json { render json: @expense, status: :created, location: @expense }
       else
         format.html { render action: "new" }
@@ -62,7 +63,8 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
-        format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
+        flash[:success] = 'Gasto Actualizado Correctamente'
+        format.html { redirect_to @expense }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,5 +83,10 @@ class ExpensesController < ApplicationController
       format.html { redirect_to expenses_url }
       format.json { head :no_content }
     end
+  end
+
+  def por_mes
+    @modelo_actual = "expenses"
+    @expenses = Expense.find(:all).group_by { |expense| expense.date.strftime("%B %Y") }
   end
 end

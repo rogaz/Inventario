@@ -11,12 +11,34 @@
  *= require_self
  *= require_tree .
 */
+#content{
+    max-width: 850px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    background: #FFF;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 30px;
+    -webkit-box-shadow: 2px 2px 2px 2px #AAA;
+    box-shadow: 2px 2px 2px 2px #AAA;
+    opacity:0.95;
+    filter:alpha(opacity=95); /* For IE8 and earlier */
+}
+
 #content-table-employees{
     width: 750px;
     margin: 0px auto;
 }
 
 #content-show-employees{
+    width: 400px;
+    margin: 0px auto;
+}
+
+#content-show-expenses{
     width: 400px;
     margin: 0px auto;
 }
@@ -29,7 +51,7 @@
 #logo{
     width: 45px;
     height: 45px;
-    padding: 5px 5px 5px 30px;
+    padding: 5px 5px 5px 5px;
     float: left;
 }
 
@@ -38,9 +60,10 @@
 }
 
 #flash{
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
-    margin: 20px 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -66,4 +89,10 @@
     border: 4px solid #ea290a;
     background: #fe6047;
     color: #cd1401;
+}
+
+.total{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
 }

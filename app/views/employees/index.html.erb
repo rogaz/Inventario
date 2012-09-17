@@ -1,8 +1,4 @@
 <div>
-  
-<% flash.each do |key, value| %>
-  <div id="flash" class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
 
 <h1>Lista de Empleados</h1>
 <%= link_to 'Empleado Nuevo', new_employee_path, :class => "btn btn-info", :style => "margin-bottom: 10px;" %>

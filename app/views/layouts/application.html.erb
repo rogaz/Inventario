@@ -46,17 +46,17 @@
       <nav>
         <% if current_user_session %>
         <ul id="barra-superior" class="nav pull-right">
-          <li id="li1"><%= link_to 'Activities', activities_path %></li>
-          <li id="li2"><%= link_to 'Customers', customers_path %></li>
-          <li id="li3"><%= link_to 'Details', details_path %></li>
-          <li id="li4"><%= link_to 'Employees', employees_path %></li>
-          <li id="li5"><%= link_to 'Expenses', expenses_path %></li>
-          <li id="li6"><%= link_to 'Product_types', product_types_path %></li>
-          <li id="li7"><%= link_to 'Products', products_path %></li>
-          <li id="li8"><%= link_to 'Purchases', purchases_path %></li>
-          <li id="li9"><%= link_to 'Sales', sales_path %></li>
-          <li id="li10"><%= link_to 'Stocks', stocks_path %></li>
-          <li id="li11"><%= link_to 'Users', users_path %></li>
+          <li id="li1"><%= link_to 'Actividades', activities_path %></li>
+          <li id="li5"><%= link_to 'Gastos', expenses_path %></li>
+          <li id="li4"><%= link_to 'Empleados', employees_path %></li>
+          <li id="li2"><%= link_to 'Clientes', customers_path %></li>
+          <li id="li3"><%= link_to 'Detalles', details_path %></li>
+          <li id="li6"><%= link_to 'Tipos de Producto', product_types_path %></li>
+          <li id="li7"><%= link_to 'Productos', products_path %></li>
+          <li id="li8"><%= link_to 'Compras', purchases_path %></li>
+          <li id="li9"><%= link_to 'Ventas', sales_path %></li>
+          <li id="li10"><%= link_to 'Almacen', stocks_path %></li>
+          <li id="li11"><%= link_to 'Home', root_path %></li>
           <li><%= link_to "Cerrar Sesión", logout_path, :method => "delete" %></li>
         </ul>
         <div id="logo"><%= link_to image_tag("logo.png", alt: "Logo"), employees_path %></div>
@@ -65,7 +65,10 @@
     </div>
   </div>
 </header>
-  <div style="width: 800px; padding-bottom: 40px; margin: 0 auto; margin-top: 80px;">
+  <% flash.each do |key, value| %>
+    <div id="flash" class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <div id="content">
 <%= yield %>
   </div>
 </body>

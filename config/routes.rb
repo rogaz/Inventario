@@ -1,5 +1,5 @@
 Inventario::Application.routes.draw do
-  root :to => "Activities#index"
+  root :to => "Activities#home"
 
   resources :users
 
@@ -32,6 +32,8 @@ Inventario::Application.routes.draw do
   put "liquidar" => "employees#liquidar", :as => :liquidar
 
   get "liquidados" => "employees#index_liquidados", :as => :liquidados
+
+  match "por_mes_expenses" => "expenses#por_mes", :as => :por_mes_expenses
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
