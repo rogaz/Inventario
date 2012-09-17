@@ -1,10 +1,10 @@
-<h1>Listing activities</h1>
+<h1>Lista de Actividades</h1>
 
-<table class="table table-bordered table-hover table-condensed">
+<table class="table table-bordered table-condensed">
   <tr>
-    <th>Title</th>
-    <th>Date</th>
-    <th>Description</th>
+    <th>Título</th>
+    <th>Fecha</th>
+    <th>Descripción</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,15 +13,15 @@
 <% @activities.each do |activity| %>
   <tr>
     <td><%= activity.title %></td>
-    <td><%= activity.date %></td>
+    <td><%= fecha_con_formato(activity.date) %></td>
     <td><%= activity.description %></td>
-    <td><%= link_to 'Show', activity %></td>
-    <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
-    <td><%= link_to 'Destroy', activity, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Detalles', activity %></td>
+    <td><%= link_to 'Editar', edit_activity_path(activity) %></td>
+    <td><%= link_to 'Eliminar', activity, confirm: '¿Dese eliminar actividad?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Activity', new_activity_path, :class => "btn btn-success" %>
+<%= link_to 'Agregar Actividad', new_activity_path, :class => "btn btn-success" %>

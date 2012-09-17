@@ -16,20 +16,21 @@
           </ul>
         </div>
     <% end %>
-
-    <div class="field">
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
+  <div class="form-horizontal">
+    <div class="control-group">
+      <div class="control-label"><%= f.label :title %></div>
+      <div class="controls"><%= f.text_field :title %></div>
     </div>
-    <div class="field">
-      <%= f.label :date %><br />
-      <%= f.text_field :date,:id => "datepicker" %>
+    <div class="control-group">
+      <div class="control-label"><%= f.label :date %></div>
+      <div class="controls"><%= f.text_field :date,:id => "datepicker" %></div>
     </div>
-    <div class="field">
-      <%= f.label :description %><br />
-      <%= f.text_area :description %>
+    <div class="control-group">
+      <div class="control-label"><%= f.label :description %></div>
+      <div class="controls"><%= f.text_area :description, :size => "50X20" %></div>
     </div>
-    <div class="actions">
-      <%= f.submit %>
+    <div class="control-group">
+      <div class="controls"><%= f.submit "Guardar Actividad", :class => "btn btn-success" %></div>
     </div>
+  </div>
 <% end %>
