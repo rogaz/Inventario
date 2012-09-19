@@ -1,4 +1,6 @@
 Inventario::Application.routes.draw do
+  resources :locations
+
   root :to => "Activities#home"
 
   resources :users
