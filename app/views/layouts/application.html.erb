@@ -9,28 +9,30 @@
   <script language="javascript" type="text/javascript">
     $(document).ready(function(){
       string = "<%= @modelo_actual %>";
-      if (string == "activities"){
+      if (string == "locations"){
         $("#li1").addClass("active");
-      } else if (string == "customers"){
+      }else if (string == "activities"){
         $("#li2").addClass("active");
-      } else if (string == "details"){
+      } else if (string == "expenses"){
         $("#li3").addClass("active");
       } else if (string == "employees"){
         $("#li4").addClass("active");
-      } else if (string == "expenses"){
+      } else if (string == "customers"){
         $("#li5").addClass("active");
-      } else if (string == "product_types"){
+      } else if (string == "details"){
         $("#li6").addClass("active");
-      } else if (string == "products"){
+      } else if (string == "product_types"){
         $("#li7").addClass("active");
-      } else if (string == "purchases"){
+      } else if (string == "products"){
         $("#li8").addClass("active");
-      } else if (string == "sales"){
+      } else if (string == "purchases"){
         $("#li9").addClass("active");
-      } else if (string == "stocks"){
+      } else if (string == "sales"){
         $("#li10").addClass("active");
-      } else if (string == "users"){
+      } else if (string == "stocks"){
         $("#li11").addClass("active");
+      } else if (string == "users"){
+        $("#li12").addClass("active");
       }
     });
   </script>
@@ -46,17 +48,18 @@
       <nav>
         <% if current_user_session %>
         <ul id="barra-superior" class="nav pull-right">
-          <li id="li1"><%= link_to 'Actividades', activities_path %></li>
-          <li id="li5"><%= link_to 'Gastos', expenses_path %></li>
+          <li id="li1"><%= link_to 'Localidades', locations_path %></li>
+          <li id="li2"><%= link_to 'Actividades', activities_path %></li>
+          <li id="li3"><%= link_to 'Gastos', expenses_path %></li>
           <li id="li4"><%= link_to 'Empleados', employees_path %></li>
-          <li id="li2"><%= link_to 'Clientes', customers_path %></li>
-          <li id="li3"><%= link_to 'Detalles', details_path %></li>
-          <li id="li6"><%= link_to 'Tipos de Producto', product_types_path %></li>
-          <li id="li7"><%= link_to 'Productos', products_path %></li>
-          <li id="li8"><%= link_to 'Compras', purchases_path %></li>
-          <li id="li9"><%= link_to 'Ventas', sales_path %></li>
-          <li id="li10"><%= link_to 'Almacen', stocks_path %></li>
-          <li id="li11"><%= link_to 'Home', root_path %></li>
+          <li id="li5"><%= link_to 'Clientes', customers_path %></li>
+          <li id="li6"><%= link_to 'Detalles', details_path %></li>
+          <li id="li7"><%= link_to 'Tipos de Producto', product_types_path %></li>
+          <li id="li8"><%= link_to 'Productos', products_path %></li>
+          <li id="li9"><%= link_to 'Compras', purchases_path %></li>
+          <li id="li10"><%= link_to 'Ventas', sales_path %></li>
+          <li id="li11"><%= link_to 'Almacen', stocks_path %></li>
+          <li id="li12"><%= link_to 'Home', root_path %></li>
           <li><%= link_to "Cerrar Sesión", logout_path, :method => "delete" %></li>
         </ul>
         <div id="logo"><%= link_to image_tag("logo.png", alt: "Logo"), employees_path %></div>
