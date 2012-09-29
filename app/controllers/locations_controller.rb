@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   # GET /locations.json
 
   def index
-    @modelo_actual = "locations"
+    @modelo_actual = "location"
     if params[:search].present?
       @locations = Location.near(params[:search], 50, :order => :distance)
     else
