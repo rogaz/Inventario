@@ -21,7 +21,8 @@
   </div>
   <div class="field">
     <%= f.label :product_id %><br />
-    <%= f.number_field :product_id %>
+    <%= f.grouped_collection_select(:purchase, :product_id,  @product_types, :products, :size, :id, :type_of_products) %>
+    
   </div>
   <div class="actions">
     <%= f.submit %>
