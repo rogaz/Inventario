@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
     @purchases = Purchase.all
     @modelo_actual = "purchases"
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @purchases }
@@ -27,6 +28,8 @@ class PurchasesController < ApplicationController
   # GET /purchases/new.json
   def new
     @purchase = Purchase.new
+    @products = Product.all
+    @product_types = ProductType.all
 
     respond_to do |format|
       format.html # new.html.erb
