@@ -27,7 +27,7 @@ class DetailsController < ApplicationController
   # GET /details/new.json
   def new
     @detail = Detail.new
-
+    @products_all= Product.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @detail }
