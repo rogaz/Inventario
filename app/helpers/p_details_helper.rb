@@ -1,0 +1,2 @@
+module PDetailsHelper
+end

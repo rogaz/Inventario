@@ -1,0 +1,29 @@
+<h1>Listing p_details</h1>
+
+<table>
+  <tr>
+    <th>Quantity</th>
+    <th>Unit price</th>
+    <th>Product</th>
+    <th>Purchase</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @p_details.each do |p_detail| %>
+  <tr>
+    <td><%= p_detail.quantity %></td>
+    <td><%= p_detail.unit_price %></td>
+    <td><%= p_detail.product_id %></td>
+    <td><%= p_detail.purchase_id %></td>
+    <td><%= link_to 'Show', p_detail %></td>
+    <td><%= link_to 'Edit', edit_p_detail_path(p_detail) %></td>
+    <td><%= link_to 'Destroy', p_detail, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New P detail', new_p_detail_path %>

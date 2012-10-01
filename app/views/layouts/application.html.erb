@@ -47,6 +47,7 @@
       <% end %>
       <nav>
         <% if current_user_session %>
+        <div id="logo"><%= link_to image_tag("logo.png", alt: "Logo"), employees_path %></div>
         <ul id="barra-superior" class="nav pull-right">
           <li id="li1"><%= link_to 'Localidades', locations_path %></li>
           <li id="li2"><%= link_to 'Actividades', activities_path %></li>
@@ -57,12 +58,12 @@
           <li id="li7"><%= link_to 'Tipos de Producto', product_types_path %></li>
           <li id="li8"><%= link_to 'Productos', products_path %></li>
           <li id="li9"><%= link_to 'Compras', purchases_path %></li>
+          <li id="li13"><%= link_to 'C_Detalles', p_details_path %></li>
           <li id="li10"><%= link_to 'Ventas', sales_path %></li>
           <li id="li11"><%= link_to 'Almacen', stocks_path %></li>
           <li id="li12"><%= link_to 'Home', root_path %></li>
           <li><%= link_to "Cerrar Sesión", logout_path, :method => "delete" %></li>
         </ul>
-        <div id="logo"><%= link_to image_tag("logo.png", alt: "Logo"), employees_path %></div>
         <% end %>
       </nav>
     </div>
