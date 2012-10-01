@@ -53,7 +53,7 @@
           <li id="li3"><%= link_to 'Gastos', expenses_path %></li>
           <li id="li4"><%= link_to 'Empleados', employees_path %></li>
           <li id="li5"><%= link_to 'Clientes', customers_path %></li>
-          <li id="li6"><%= link_to 'Detalles', details_path %></li>
+          <li id="li6"><%= link_to 'Detalles', :controller => "details", :action => "new" %></li>
           <li id="li7"><%= link_to 'Tipos de Producto', product_types_path %></li>
           <li id="li8"><%= link_to 'Productos', products_path %></li>
           <li id="li9"><%= link_to 'Compras', purchases_path %></li>

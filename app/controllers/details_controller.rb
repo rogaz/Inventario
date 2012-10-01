@@ -3,7 +3,9 @@ class DetailsController < ApplicationController
   # GET /details
   # GET /details.json
   def index
+
     @details = Detail.all
+
     @modelo_actual = "details"
 
     respond_to do |format|
@@ -26,6 +28,8 @@ class DetailsController < ApplicationController
   # GET /details/new
   # GET /details/new.json
   def new
+    @details = Detail.all
+
     @detail = Detail.new
     @products_all= Product.all
     respond_to do |format|

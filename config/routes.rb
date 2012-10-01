@@ -35,6 +35,8 @@ Inventario::Application.routes.draw do
 
   get "liquidados" => "employees#index_liquidados", :as => :liquidados
 
+  get "nueva_venta" => "details#new", :as => :nueva_venta
+
   match "por_mes_expenses" => "expenses#por_mes", :as => :por_mes_expenses
   # The priority is based upon order of creation:
   # first created -> highest priority.
