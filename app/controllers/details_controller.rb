@@ -31,7 +31,7 @@ class DetailsController < ApplicationController
     @details = Detail.all
 
     @detail = Detail.new
-    @products_all= Product.all
+    @product_types = ProductType.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @detail }
