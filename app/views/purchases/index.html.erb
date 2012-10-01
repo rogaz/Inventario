@@ -2,10 +2,8 @@
 
 <table class="table">
   <tr>
-    <th>Quantity</th>
-    <th>Unit price</th>
-    <th>Product ID</th>
-    <th>Product</th>
+    <th>Fecha</th>
+    <th>Total</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +11,8 @@
 
 <% @purchases.each do |purchase| %>
   <tr>
-    <td><%= purchase.quantity %></td>
-    <td><%= purchase.unit_price %></td>
-    <td><%= purchase.product_id %></td>
-    <td><%= purchase.product.size + " " + purchase.product.product_type.type_of_products %></td>
+    <td><%= purchase.date %></td>
+    <td><%= purchase.total %></td>
     <td><%= link_to 'Show', purchase %></td>
     <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
     <td><%= link_to 'Destroy', purchase, confirm: 'Are you sure?', method: :delete %></td>

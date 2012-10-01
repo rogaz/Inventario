@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @p_detail.quantity %>
+</p>
+
+<p>
+  <b>Unit price:</b>
+  <%= @p_detail.unit_price %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @p_detail.product_id %>
+</p>
+
+<p>
+  <b>Purchase:</b>
+  <%= @p_detail.purchase_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_p_detail_path(@p_detail) %> |
+<%= link_to 'Back', p_details_path %>

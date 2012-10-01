@@ -28,8 +28,6 @@ class PurchasesController < ApplicationController
   # GET /purchases/new.json
   def new
     @purchase = Purchase.new
-    @products = Product.all
-    @product_types = ProductType.all
 
     respond_to do |format|
       format.html # new.html.erb
