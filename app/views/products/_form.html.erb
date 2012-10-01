@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :size %><br />
+    <%= f.label :Tamaño %><br />
     <%= f.text_field :size %>
   </div>
   <div class="field">
-    <%= f.label :product_type_id %><br />
+    <%= f.label :Tipo_De_Producto %><br />
     <%= f.collection_select :product_type_id,@product_types,:id,:type_of_products %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Crear Producto' %>
   </div>
 <% end %>

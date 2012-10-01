@@ -50,7 +50,7 @@ class DetailsController < ApplicationController
 
     respond_to do |format|
       if @detail.save
-        format.html { redirect_to @detail, notice: 'Detail was successfully created.' }
+        format.html { redirect_to new_detail_path, notice: 'Detail was successfully created.' }
         format.json { render json: @detail, status: :created, location: @detail }
       else
         format.html { render action: "new" }

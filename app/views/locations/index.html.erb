@@ -1,4 +1,4 @@
-<h1>Listing locations</h1>
+<h1>Direcciones de Clientes</h1>
 
 
 
@@ -11,13 +11,14 @@
     <td><%= location.address %></td>
     <td><%= location.latitude %></td>
     <td><%= location.longitude %></td>
-    <td><%= link_to 'Show', location %></td>
-    <td><%= link_to 'Edit', edit_location_path(location) %></td>
-    <td><%= link_to 'Destroy', location, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Mostrar Mapa', location %></td>
+    <td><%= link_to 'Editar Ubicacion', edit_location_path(location) %></td>
+    <td><%= link_to 'Eliminar', location, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+<br/>
 <% end %>
 </table>
 
-<br />
+<br/>
 
-<%= link_to 'New Location', new_location_path %>
+<%= link_to 'Nueva Ubicacion', new_location_path %>

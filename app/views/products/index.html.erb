@@ -1,9 +1,9 @@
-<h1>Listing products</h1>
+<h1>Lista De Productos</h1>
 
 <table class="table">
   <tr>
-    <th>Size</th>
-    <th>Product type</th>
+    <th>Tamaño</th>
+    <th>Tipo De Producto</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,13 +14,13 @@
   <tr>
     <td><%= product.size %></td>
     <td><%= product.product_type.type_of_products %></td>
-    <td><%= link_to 'Show', product%></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Mostrar', product%></td>
+    <td><%= link_to 'Editar', edit_product_path(product) %></td>
+    <td><%= link_to 'Eliminar', product, confirm: '¿Esta seguro de eliminar este producto?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Product', new_product_path, :class => "btn btn-success" %>
+<%= link_to 'Nuevo Producto', new_product_path, :class => "btn btn-success" %>

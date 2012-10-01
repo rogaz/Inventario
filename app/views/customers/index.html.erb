@@ -1,11 +1,11 @@
-<h1>Listing customers</h1>
+<h1>Lista de Clientes</h1>
 
 <table class="table">
   <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Reference person</th>
-    <th>Last visit date</th>
+    <th>Nombre</th>
+    <th>Telefono</th>
+    <th>Persona de Referencia</th>
+    <th>Fecha de Ultima Visita</th>
     <th>Direccion</th>
 
     <th></th>
@@ -22,13 +22,13 @@
     <td><%= customer.address %></td>
 
 
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Mostrar', customer %></td>
+    <td><%= link_to 'Editar', edit_customer_path(customer) %></td>
+    <td><%= link_to 'Eliminar', customer, confirm: '¿Esta seguro de eliminar este cliente?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Customer', new_customer_path, :class => "btn btn-success" %>
+<%= link_to 'Nuevo Cliente', new_customer_path, :class => "btn btn-success" %>
