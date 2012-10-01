@@ -6,6 +6,8 @@
     <th>Phone</th>
     <th>Reference person</th>
     <th>Last visit date</th>
+    <th>Direccion</th>
+
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +19,9 @@
     <td><%= customer.phone %></td>
     <td><%= customer.reference_person %></td>
     <td><%= customer.last_visit_date %></td>
+    <td><%= customer.address %></td>
+
+
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
     <td><%= link_to 'Destroy', customer, confirm: 'Are you sure?', method: :delete %></td>
