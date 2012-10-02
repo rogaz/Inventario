@@ -3,6 +3,7 @@ class PDetailsController < ApplicationController
   # GET /p_details.json
   def index
     @p_details = PDetail.all
+    @modelo_actual = "p_details"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -98,7 +99,6 @@ class PDetailsController < ApplicationController
   def close_purchase
     @purchase = Purchase.find(session[:purchase_id])
     @p_details = PDetail.where(:purchase_id => @purchase.id)
-    print @p_details
     total = 0
     @p_details.each do |p_detail|
       total += (p_detail.unit_price * p_detail.quantity)

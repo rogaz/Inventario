@@ -1,7 +1,11 @@
-<h1>Listing purchases</h1>
+<% if @purchases.empty? %>
+  <h2>No existen compras</h2>
+<% else %>
+<h1>Ventas</h1>
 
-<table class="table">
+<table class="table table-bordered table-condensed">
   <tr>
+    <th>ID</th>
     <th>Fecha</th>
     <th>Total</th>
     <th></th>
@@ -11,6 +15,7 @@
 
 <% @purchases.each do |purchase| %>
   <tr>
+    <td><%= purchase.id %></td>
     <td><%= purchase.date %></td>
     <td><%= purchase.total %></td>
     <td><%= link_to 'Show', purchase %></td>
@@ -21,6 +26,8 @@
 </table>
 
 <br />
+
+<% end %>
 
 <% if session[:open_purchase] == "true" %>
   <%= link_to 'Agregar más Productos a Compra', new_p_detail_path, :class => "btn" %>

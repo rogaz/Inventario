@@ -1,12 +1,14 @@
-<h1>New p_detail</h1>
+<%= link_to 'Eliminar Compra', {:controller => "p_details", :action => "delete_purchase"}, :confirm => "¿Desea eliminar compra?", :method => :delete, :class => "btn btn-danger" %>
+<h2>Agregar Producto a la Compra</h2>
 
 <%= render 'form' %>
 
-<% if @p_details != nil %>
-<h1>Listing p_details</h1>
+<% unless @p_details.empty? %>
+<h1>Productos Agregados</h1>
 
 <table class="table table-bordered">
   <tr>
+    <th>Total de Producto</th>
     <th>Quantity</th>
     <th>Unit price</th>
     <th>Product</th>
@@ -18,9 +20,10 @@
 
 <% @p_details.each do |p_detail| %>
   <tr>
+    <td><%= p_detail.quantity * p_detail.unit_price %></td>
     <td><%= p_detail.quantity %></td>
     <td><%= p_detail.unit_price %></td>
-    <td><%= p_detail.product_id %></td>
+    <td><%= p_detail.product.size.to_s + " " + p_detail.product.product_type.type_of_products %></td>
     <td><%= p_detail.purchase_id %></td>
     <td><%= link_to 'Show', p_detail %></td>
     <td><%= link_to 'Edit', edit_p_detail_path(p_detail) %></td>
@@ -30,8 +33,5 @@
 </table>
 
 <% end %>
-<%= form_tag(close_purchase_path, :method => "put") do %>
-  <% submit_tag "Guardar Compra", :class => "btn btn-success" %>
-<% end %>
 
-<%= link_to 'Eliminar Compra', {:controller => "p_details", :action => "delete_purchase"}, :confirm => "¿Desea eliminar compra?", :method => :delete, :class => "btn btn-danger" %>
+<%= link_to 'Guardar Compra', {:controller => "p_details", :action => "close_purchase"}, :method => :put, :class => "btn btn-success" %>
