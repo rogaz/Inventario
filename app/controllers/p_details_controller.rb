@@ -58,7 +58,7 @@ class PDetailsController < ApplicationController
 
     respond_to do |format|
       if @p_detail.save
-        format.html { redirect_to new_p_detail_path, notice: 'P detail was successfully created.' }
+        format.html { redirect_to new_p_detail_path }
         format.json { render json: @p_detail, status: :created, location: @p_detail }
       else
         format.html { render action: "new" }
@@ -96,15 +96,27 @@ class PDetailsController < ApplicationController
   end
 
   def close_purchase
-    #@purchase = Purchase.find(session[:purchase_id])
-    #@p_details = PDetails.where(:purchase_id => @purchase.id)
-    #print @p_details
-    #total = 0
-    #@p_details.each do |p_detail|
-    #  total += (p_detail.unit_price * p_detail.quantity)
-    #end
-    #@purchase.total = total
-    #@purchase.save
+    @purchase = Purchase.find(session[:purchase_id])
+    @p_details = PDetail.where(:purchase_id => @purchase.id)
+    print @p_details
+    total = 0
+    @p_details.each do |p_detail|
+      total += (p_detail.unit_price * p_detail.quantity)
+    end
+    @purchase.total = total
+    @purchase.save
+    session[:open_purchase] = nil
+    session[:purchase_id] = nil
+
+    respond_to do |format|
+      format.html { redirect_to purchases_path }
+      format.json { head :no_content }
+    end
+  end
+
+  def delete_purchase
+    @purchase = Purchase.find(session[:purchase_id])
+    @purchase.destroy
     session[:open_purchase] = nil
     session[:purchase_id] = nil
 

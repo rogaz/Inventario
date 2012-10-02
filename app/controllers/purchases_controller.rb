@@ -17,6 +17,7 @@ class PurchasesController < ApplicationController
   # GET /purchases/1.json
   def show
     @purchase = Purchase.find(params[:id])
+    @p_details = PDetail.where(:purchase_id => @purchase.id)
 
     respond_to do |format|
       format.html # show.html.erb

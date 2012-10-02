@@ -42,6 +42,8 @@ Inventario::Application.routes.draw do
   match "por_mes_expenses" => "expenses#por_mes", :as => :por_mes_expenses
 
   put "close_purchase" => "p_details#close_purchase", :as => :close_purchase
+
+  delete "delete_purchase" => "p_details#delete_purchase", :as => :delete_purchase
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

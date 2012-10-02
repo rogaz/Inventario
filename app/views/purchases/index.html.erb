@@ -22,5 +22,8 @@
 
 <br />
 
-<%= link_to 'New Purchase', new_purchase_path, :class => "btn btn-success" %>
-<%= link_to 'Nueva Compra', new_p_detail_path %>
+<% if session[:open_purchase] == "true" %>
+  <%= link_to 'Agregar más Productos a Compra', new_p_detail_path, :class => "btn" %>
+<% else %>
+  <%= link_to 'Nueva Compra', new_p_detail_path(:creada => "false"), :class => "btn" %>
+<% end %>

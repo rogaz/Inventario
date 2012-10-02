@@ -1,24 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Quantity:</b>
-  <%= @purchase.quantity %>
+  <b>Fecha:</b>
+  <%= @purchase.date %>
 </p>
 
 <p>
-  <b>Unit price:</b>
-  <%= @purchase.unit_price %>
+  <b>Total:</b>
+  <%= @purchase.total %>
 </p>
 
-<p>
-  <b>Product_ID:</b>
-  <%= @purchase.product_id %>
-</p>
+<table class="table table-bordered table-condensed">
+  <tr>
+    <th>Total de Producto</th>
+    <th>Quantity</th>
+    <th>Unit price</th>
+    <th>Product</th>
+    <th>Purchase</th>
 
-<p>
-  <b>Product:</b>
-  <%= @purchase.product.size %>
-</p>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @p_details.each do |p_detail| %>
+  <tr>
+    <td><%= p_detail.quantity * p_detail.unit_price %></td>
+    <td><%= p_detail.quantity %></td>
+    <td><%= p_detail.unit_price %></td>
+    <td><%= p_detail.product_id %></td>
+    <td><%= p_detail.purchase_id %></td>
+    <td><%= link_to 'Show', p_detail %></td>
+    <td><%= link_to 'Edit', edit_p_detail_path(p_detail) %></td>
+    <td><%= link_to 'Destroy', p_detail, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
 
 
 <%= link_to 'Edit', edit_purchase_path(@purchase) %> |

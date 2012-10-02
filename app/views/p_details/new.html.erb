@@ -33,3 +33,5 @@
 <%= form_tag(close_purchase_path, :method => "put") do %>
   <% submit_tag "Guardar Compra", :class => "btn btn-success" %>
 <% end %>
+
+<%= link_to 'Eliminar Compra', {:controller => "p_details", :action => "delete_purchase"}, :confirm => "¿Desea eliminar compra?", :method => :delete, :class => "btn btn-danger" %>
