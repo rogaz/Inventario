@@ -4,6 +4,8 @@ class PDetailsController < ApplicationController
   def index
     @p_details = PDetail.all
     @modelo_actual = "p_details"
+    #session[:purchase_id] = nil
+    #session[:created_purchase] = nil
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,14 +30,12 @@ class PDetailsController < ApplicationController
     @p_detail = PDetail.new
     @products = Product.all
     @product_types = ProductType.all
-    if params[:creada] == "false"
-      if session[:open_purchase] != "true"
-        session[:open_purchase] = "true"
-        @purchase = Purchase.new
-        @purchase.date = Time.now
-        @purchase.save
-        session[:purchase_id] = @purchase.id
-      end
+    if session[:created_purchase] == nil
+      @purchase = Purchase.new
+      @purchase.date = Time.now
+      @purchase.save
+      session[:purchase_id] = @purchase.id
+      session[:created_purchase] = "true"
     end
     @p_details = PDetail.where(:purchase_id => session[:purchase_id])
     
@@ -105,8 +105,9 @@ class PDetailsController < ApplicationController
     end
     @purchase.total = total
     @purchase.save
-    session[:open_purchase] = nil
+    #session[:open_purchase] = nil
     session[:purchase_id] = nil
+    session[:created_purchase] = nil
 
     respond_to do |format|
       format.html { redirect_to purchases_path }
@@ -117,8 +118,9 @@ class PDetailsController < ApplicationController
   def delete_purchase
     @purchase = Purchase.find(session[:purchase_id])
     @purchase.destroy
-    session[:open_purchase] = nil
+    #session[:open_purchase] = nil
     session[:purchase_id] = nil
+    session[:created_purchase] = nil
 
     respond_to do |format|
       format.html { redirect_to purchases_path }

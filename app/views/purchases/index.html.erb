@@ -1,7 +1,7 @@
 <% if @purchases.empty? %>
   <h2>No existen compras</h2>
 <% else %>
-<h1>Ventas</h1>
+<h1>Compras</h1>
 
 <table class="table table-bordered table-condensed">
   <tr>
@@ -29,8 +29,8 @@
 
 <% end %>
 
-<% if session[:open_purchase] == "true" %>
+<% if session[:created_purchase] == "true" %>
   <%= link_to 'Agregar más Productos a Compra', new_p_detail_path, :class => "btn" %>
 <% else %>
-  <%= link_to 'Nueva Compra', new_p_detail_path(:creada => "false"), :class => "btn" %>
+  <%= link_to 'Nueva Compra', new_p_detail_path, :class => "btn" %>
 <% end %>

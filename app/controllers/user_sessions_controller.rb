@@ -18,6 +18,11 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
+    if session[:created_purchase] == "true"
+      Purchase.find(session[:purchase_id]).destroy
+      session[:purchase_id] = nil
+      session[:created_purchase] = nil
+    end
     current_user_session.destroy
     redirect_to signin_path
   end
