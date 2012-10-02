@@ -1,6 +1,6 @@
 <h1>Listing p_details</h1>
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Quantity</th>
     <th>Unit price</th>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New P detail', new_p_detail_path %>
+<%= link_to 'Nueva Compra', new_p_detail_path(:creada => "false"), :class => "btn" %>

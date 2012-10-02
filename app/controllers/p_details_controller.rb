@@ -27,6 +27,17 @@ class PDetailsController < ApplicationController
     @p_detail = PDetail.new
     @products = Product.all
     @product_types = ProductType.all
+    if params[:creada] == "false"
+      if session[:open_purchase] != "true"
+        session[:open_purchase] = "true"
+        @purchase = Purchase.new
+        @purchase.date = Time.now
+        @purchase.save
+        session[:purchase_id] = @purchase.id
+      end
+    end
+    @p_details = PDetail.where(:purchase_id => session[:purchase_id])
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,10 +54,11 @@ class PDetailsController < ApplicationController
   # POST /p_details.json
   def create
     @p_detail = PDetail.new(params[:p_detail])
+    @p_detail.purchase_id = session[:purchase_id]
 
     respond_to do |format|
       if @p_detail.save
-        format.html { redirect_to @p_detail, notice: 'P detail was successfully created.' }
+        format.html { redirect_to new_p_detail_path, notice: 'P detail was successfully created.' }
         format.json { render json: @p_detail, status: :created, location: @p_detail }
       else
         format.html { render action: "new" }
@@ -78,7 +90,26 @@ class PDetailsController < ApplicationController
     @p_detail.destroy
 
     respond_to do |format|
-      format.html { redirect_to p_details_url }
+      format.html { redirect_to new_p_detail_path }
+      format.json { head :no_content }
+    end
+  end
+
+  def close_purchase
+    #@purchase = Purchase.find(session[:purchase_id])
+    #@p_details = PDetails.where(:purchase_id => @purchase.id)
+    #print @p_details
+    #total = 0
+    #@p_details.each do |p_detail|
+    #  total += (p_detail.unit_price * p_detail.quantity)
+    #end
+    #@purchase.total = total
+    #@purchase.save
+    session[:open_purchase] = nil
+    session[:purchase_id] = nil
+
+    respond_to do |format|
+      format.html { redirect_to purchases_path }
       format.json { head :no_content }
     end
   end

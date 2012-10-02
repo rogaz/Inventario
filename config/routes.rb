@@ -40,6 +40,8 @@ Inventario::Application.routes.draw do
   get "nueva_venta" => "details#new", :as => :nueva_venta
 
   match "por_mes_expenses" => "expenses#por_mes", :as => :por_mes_expenses
+
+  put "close_purchase" => "p_details#close_purchase", :as => :close_purchase
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -19,10 +19,6 @@
     <%= f.label :date %><br />
     <%= f.text_field :date %>
   </div>
-  <div class="field">
-    <%= f.label :product_id %><br />
-    <%= f.grouped_collection_select(:product_id,  @product_types, :products, :type_of_products, :id, :size) %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>

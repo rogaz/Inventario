@@ -28,7 +28,7 @@ class PurchasesController < ApplicationController
   # GET /purchases/new.json
   def new
     @purchase = Purchase.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @purchase }
@@ -82,5 +82,9 @@ class PurchasesController < ApplicationController
       format.html { redirect_to purchases_url }
       format.json { head :no_content }
     end
+  end
+
+  def register_details
+    @p_detail = PDetaill.new
   end
 end
