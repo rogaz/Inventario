@@ -5,22 +5,22 @@
 
 <table class="table table-bordered table-condensed">
   <tr>
-    <th>ID</th>
+    <!--<th>ID</th>-->
     <th>Fecha</th>
     <th>Total</th>
     <th></th>
-    <th></th>
+    <!--<th></th>-->
     <th></th>
   </tr>
 
 <% @purchases.each do |purchase| %>
   <tr>
-    <td><%= purchase.id %></td>
-    <td><%= purchase.date %></td>
+    <!--<td><%= purchase.id %></td>-->
+    <td><%= fecha_con_formato(purchase.date) %></td>
     <td><%= purchase.total %></td>
-    <td><%= link_to 'Show', purchase %></td>
-    <td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>
-    <td><%= link_to 'Destroy', purchase, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Mostrar Detalles', purchase, :class => "btn btn-info" %></td>
+    <!--<td><%= link_to 'Edit', edit_purchase_path(purchase) %></td>-->
+    <td><%= link_to 'Eliminar', purchase, confirm: '¿Desea eliminar esta compra?', method: :delete, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>

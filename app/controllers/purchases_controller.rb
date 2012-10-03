@@ -78,6 +78,9 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
     @purchase.destroy
 
+    session[:purchase_id] = nil
+    session[:created_purchase] = nil
+
     respond_to do |format|
       format.html { redirect_to purchases_url }
       format.json { head :no_content }

@@ -23,7 +23,7 @@
     <td><%= p_detail.unit_price %></td>
     <td><%= p_detail.quantity * p_detail.unit_price %></td>
     <td><%= p_detail.purchase_id %></td>
-    <td><%= link_to 'Destroy', p_detail, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger btn-small" %></td>
+    <td><%= link_to 'Eliminar producto de la lista', p_detail, method: :delete, :class => "btn btn-danger btn-small" %></td>
   </tr>
 <% end %>
 </table>

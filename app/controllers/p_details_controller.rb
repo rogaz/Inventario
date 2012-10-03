@@ -105,7 +105,7 @@ class PDetailsController < ApplicationController
     end
     @purchase.total = total
     @purchase.save
-    #session[:open_purchase] = nil
+
     session[:purchase_id] = nil
     session[:created_purchase] = nil
 
@@ -118,7 +118,7 @@ class PDetailsController < ApplicationController
   def delete_purchase
     @purchase = Purchase.find(session[:purchase_id])
     @purchase.destroy
-    #session[:open_purchase] = nil
+    
     session[:purchase_id] = nil
     session[:created_purchase] = nil
 

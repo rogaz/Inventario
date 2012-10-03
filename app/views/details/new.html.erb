@@ -9,11 +9,11 @@
 
 <table class="table table-bordered table-condensed">
   <tr>
-    <th>Unit Price</th>
-    <th>Product</th>
-    <th>Quantity</th>
+    <th>Cantidad</th>
+    <th>Producto</th>
+    <th>Precio Unitario</th>
     <th>Total de Producto</th>
-    <th>Sale</th>
+    <th>Venta</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,9 +21,9 @@
 
 <% @details.each do |detail| %>
   <tr>
-    <td><%= detail.unit_price %></td>
-    <td><%= detail.product.size.to_s + " " + detail.product.product_type.type_of_products %></td>
     <td><%= detail.quantity %></td>
+    <td><%= detail.product.size.to_s + " " + detail.product.product_type.type_of_products %></td>
+    <td><%= detail.unit_price %></td>
     <td><%= detail.quantity * detail.unit_price %></td>
     <td><%= detail.sale_id %></td>
     <td><%= link_to 'Show', detail %></td>

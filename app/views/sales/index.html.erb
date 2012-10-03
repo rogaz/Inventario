@@ -13,13 +13,19 @@
     <th></th>
     <th></th>
   </tr>
+<% ultimo = @sales.count %>
+<% @sales.each_with_index do |sale, index| %>
 
-<% @sales.each do |sale| %>
   <tr>
     <td><%= sale.date %></td>
     <td><%= sale.total %></td>
-    <td><%= sale.customer.name %></td>
-    <td><%= sale.customer_id %></td>
+    <% if index+1 == ultimo and session[:created_sale] == "true" %>
+      <td></td>
+      <td></td>
+    <% else %>
+      <td><%= sale.customer.name %></td>
+      <td><%= sale.customer_id %></td>
+    <% end %>
     <td><%= link_to 'Show', sale %></td>
     <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
     <td><%= link_to 'Destroy', sale, confirm: 'Are you sure?', method: :delete %></td>

@@ -2,7 +2,7 @@
 
 <p>
   <b>Fecha:</b>
-  <%= @purchase.date %>
+  <%= fecha_con_formato(@purchase.date) %>
 </p>
 
 <p>
@@ -14,31 +14,23 @@
 
 <table class="table table-bordered table-condensed">
   <tr>
+    <th>Cantidad</th>
+    <th>Producto</th>
+    <th>Precio Unitario</th>
     <th>Total de Producto</th>
-    <th>Quantity</th>
-    <th>Unit price</th>
-    <th>Product</th>
-    <th>Purchase</th>
-
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Compra</th>
   </tr>
 
 <% @p_details.each do |p_detail| %>
   <tr>
-    <td><%= p_detail.quantity * p_detail.unit_price %></td>
     <td><%= p_detail.quantity %></td>
+    <td><%= p_detail.product.size + " " + p_detail.product.product_type.type_of_products %></td>
     <td><%= p_detail.unit_price %></td>
-    <td><%= p_detail.product_id %></td>
+    <td><%= p_detail.quantity * p_detail.unit_price %></td>
     <td><%= p_detail.purchase_id %></td>
-    <td><%= link_to 'Show', p_detail %></td>
-    <td><%= link_to 'Edit', edit_p_detail_path(p_detail) %></td>
-    <td><%= link_to 'Destroy', p_detail, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 
-<%= link_to 'Edit', edit_purchase_path(@purchase) %> |
-<%= link_to 'Back', purchases_path %>
+<%= link_to 'Regresar a Compras', purchases_path, :class => "btn btn-info" %>

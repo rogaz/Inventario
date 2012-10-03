@@ -5,6 +5,8 @@ class SalesController < ApplicationController
   def index
     @sales = Sale.all
     @modelo_actual = "sales"
+    #session[:sale_id] = nil
+    #session[:created_sale] = nil
 
     respond_to do |format|
       format.html # index.html.erb

@@ -31,7 +31,8 @@ class DetailsController < ApplicationController
     @detail = Detail.new
     @products = Product.all
     @product_types = ProductType.all
-    if session[:created_sale] == nil
+    @customers = Customer.all
+    if session[:created_sale] == nil and !@customers.empty?
       @sale = Sale.new
       @sale.date = Time.now
       @sale.save
@@ -39,11 +40,15 @@ class DetailsController < ApplicationController
       session[:created_sale] = "true"
     end
     @details = Detail.where(:sale_id => session[:sale_id])
-
+    
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @detail }
+      if @customers.empty?
+        format.html { redirect_to customers_path, notice: "Debe crear un cliente para realizar una venta" }
+      else
+        format.html # new.html.erb
+        format.json { render json: @detail }
+      end
     end
   end
 
@@ -92,7 +97,7 @@ class DetailsController < ApplicationController
     @detail.destroy
 
     respond_to do |format|
-      format.html { redirect_to details_url }
+      format.html { redirect_to new_detail_path }
       format.json { head :no_content }
     end
   end
@@ -107,6 +112,7 @@ class DetailsController < ApplicationController
     @sale.total = total
     @sale.customer_id = params[:sale][:customer_id]
     @sale.save
+    
     session[:sale_id] = nil
     session[:created_sale] = nil
 
