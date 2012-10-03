@@ -3,10 +3,10 @@ class DetailsController < ApplicationController
   # GET /details
   # GET /details.json
   def index
-
     @details = Detail.all
-
     @modelo_actual = "details"
+    #session[:sale_id] = nil
+    #session[:created_sale] = nil
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,10 +28,19 @@ class DetailsController < ApplicationController
   # GET /details/new
   # GET /details/new.json
   def new
-    @details = Detail.all
-
     @detail = Detail.new
+    @products = Product.all
     @product_types = ProductType.all
+    if session[:created_sale] == nil
+      @sale = Sale.new
+      @sale.date = Time.now
+      @sale.save
+      session[:sale_id] = @sale.id
+      session[:created_sale] = "true"
+    end
+    @details = Detail.where(:sale_id => session[:sale_id])
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @detail }
@@ -47,10 +56,11 @@ class DetailsController < ApplicationController
   # POST /details.json
   def create
     @detail = Detail.new(params[:detail])
+    @detail.sale_id = session[:sale_id]
 
     respond_to do |format|
       if @detail.save
-        format.html { redirect_to new_detail_path, notice: 'Detail was successfully created.' }
+        format.html { redirect_to new_detail_path }
         format.json { render json: @detail, status: :created, location: @detail }
       else
         format.html { render action: "new" }
@@ -86,4 +96,36 @@ class DetailsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def close_sale
+    @sale = Sale.find(session[:sale_id])
+    @details = Detail.where(:sale_id => @sale.id)
+    total = 0
+    @details.each do |detail|
+      total += (detail.unit_price * detail.quantity)
+    end
+    @sale.total = total
+    @sale.customer_id = params[:sale][:customer_id]
+    @sale.save
+    session[:sale_id] = nil
+    session[:created_sale] = nil
+
+    respond_to do |format|
+      format.html { redirect_to sales_path }
+      format.json { head :no_content }
+    end
+  end
+
+  def delete_sale
+    @sale = Sale.find(session[:sale_id])
+    @sale.destroy
+    session[:sale_id] = nil
+    session[:created_sale] = nil
+
+    respond_to do |format|
+      format.html { redirect_to sales_path }
+      format.json { head :no_content }
+    end
+  end
+
 end

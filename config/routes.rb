@@ -44,6 +44,10 @@ Inventario::Application.routes.draw do
   put "close_purchase" => "p_details#close_purchase", :as => :close_purchase
 
   delete "delete_purchase" => "p_details#delete_purchase", :as => :delete_purchase
+
+  put "close_sale" => "details#close_sale", :as => :close_sale
+
+  delete "delete_sale" => "details#delete_sale", :as => :delete_sale
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

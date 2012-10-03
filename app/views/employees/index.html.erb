@@ -5,11 +5,7 @@
 <table class="table table-bordered table-hover table-condensed">
   <tr>
     <th>Nombre</th>
-    <th>Dirección</th>
     <th>Puesto Laboral</th>
-    <th>Tiempo Laborando</th>
-    <th>Fecha de Contratación</th>
-    <th>Salario</th>
     <th>Horario</th>
     <th></th>
     <th></th>
@@ -39,11 +35,11 @@
   
   <tr>
     <td><%= employee.name %></td>
-    <td><%= employee.address %></td>
+    
     <td><%= employee.job_title %></td>
-    <td><%= obtener_diferencia(Time.now.to_date, employee.hire_date) %></td>
-    <td><%= fecha_con_formato(employee.hire_date) %></td>
-    <td><%= "$" + employee.salary.to_s %></td>
+    <!--<td><%= obtener_diferencia(Time.now.to_date, employee.hire_date) %></td>-->
+    <!--<td><%= fecha_con_formato(employee.hire_date) %></td>-->
+    <!--<td><%= "$" + employee.salary.to_s %></td>-->
     <td><%= employee.horary %></td>
     <td><%= link_to 'Detalles', employee, :class => "btn btn-small btn-primary"  %></td>
     <td><%= link_to 'Editar', edit_employee_path(employee), :class => "btn btn-small btn-warning"  %></td>

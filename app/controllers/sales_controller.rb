@@ -16,6 +16,7 @@ class SalesController < ApplicationController
   # GET /sales/1.json
   def show
     @sale = Sale.find(params[:id])
+    @details = Detail.where(:sale_id => @sale.id)
 
     respond_to do |format|
       format.html # show.html.erb

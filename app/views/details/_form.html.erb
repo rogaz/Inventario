@@ -10,22 +10,21 @@
           </ul>
         </div>
     <% end %>
-
-    <div class="field">
-      <%= f.label :quantity %>
-      <br/>
-      <%= f.number_field :quantity %>
+  <div class="form-horizontal">
+    <div class="control-group">
+      <%= f.label :quantity, "Cantidad", :class => "control-label" %>
+      <div class="controls"><%= f.number_field :quantity %></div>
     </div>
-    <div class="field">
-      <%= f.label :sale_id %>
-      <br/>
-      <%= f.number_field :sale_id %>
+    <div class="control-group">
+      <%= f.label :unit_price, "Precio Unitario", :class => "control-label" %>
+      <div class="controls"><%= f.text_field :unit_price %></div>
     </div>
-    <div class="field">
-      <%= f.label :product_id %><br />
-      <%= f.grouped_collection_select(:product_id,  @product_types, :products, :type_of_products, :id, :size) %>
+    <div class="control-group">
+      <%= f.label :product_id, "Producto", :class => "control-label" %>
+      <div class="controls"><%= f.grouped_collection_select(:product_id,  @product_types, :products, :type_of_products, :id, :size) %></div>
     </div>
-    <div class="actions">
-      <%= f.submit %>
+    <div class="control-group">
+      <%= f.submit "Agregar producto", :class => "controls btn btn-success btn-small" %>
     </div>
+  </div>
 <% end %>

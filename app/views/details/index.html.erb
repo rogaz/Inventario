@@ -1,8 +1,9 @@
 <h1>Listing details</h1>
 
-<table class="table">
+<table class="table table-bordered table-condensed">
   <tr>
     <th>Quantity</th>
+    <th>Product ID</th>
     <th>Product</th>
     <th>Sale</th>
     <th></th>
@@ -14,6 +15,7 @@
   <tr>
     <td><%= detail.quantity %></td>
     <td><%= detail.product_id %></td>
+    <td><%= detail.product.size + " " + detail.product.product_type.type_of_products %></td>
     <td><%= detail.sale_id %></td>
     <td><%= link_to 'Show', detail %></td>
     <td><%= link_to 'Edit', edit_detail_path(detail) %></td>
@@ -21,10 +23,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-
-
-<%= link_to 'New Detail', new_detail_path, :class => "btn btn-success" %>
-

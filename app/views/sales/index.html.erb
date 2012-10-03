@@ -1,10 +1,14 @@
-<h1>Listing sales</h1>
+<% if @sales.empty? %>
+  <h2>No existen ventas</h2>
+<% else %>
+<h1>Ventas</h1>
 
-<table class="table">
+<table class="table table-bordered table-condensed">
   <tr>
     <th>Date</th>
     <th>Total</th>
     <th>Customer</th>
+    <th>Customer ID</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,6 +18,7 @@
   <tr>
     <td><%= sale.date %></td>
     <td><%= sale.total %></td>
+    <td><%= sale.customer.name %></td>
     <td><%= sale.customer_id %></td>
     <td><%= link_to 'Show', sale %></td>
     <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
@@ -22,6 +27,10 @@
 <% end %>
 </table>
 
-<br />
+<% end %>
 
-<%= link_to 'New Sale', new_sale_path, :class => "btn btn-success" %>
+<% if session[:created_sale] == "true" %>
+  <%= link_to 'Agregar más Productos a la venta', new_detail_path, :class => "btn" %>
+<% else %>
+  <%= link_to 'Nueva Venta', new_detail_path, :class => "btn" %>
+<% end %>

@@ -6,22 +6,22 @@
 <% unless @p_details.empty? %>
 <h1>Productos Agregados</h1>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-condensed">
   <tr>
+    <th>Cantidad</th>
+    <th>Producto</th>
+    <th>Precio Unitario</th>
     <th>Total de Producto</th>
-    <th>Quantity</th>
-    <th>Unit price</th>
-    <th>Product</th>
-    <th>Purchase</th>
+    <th>Compra</th>
     <th></th>
   </tr>
 
 <% @p_details.each do |p_detail| %>
   <tr>
-    <td><%= p_detail.quantity * p_detail.unit_price %></td>
     <td><%= p_detail.quantity %></td>
-    <td><%= p_detail.unit_price %></td>
     <td><%= p_detail.product.size.to_s + " " + p_detail.product.product_type.type_of_products %></td>
+    <td><%= p_detail.unit_price %></td>
+    <td><%= p_detail.quantity * p_detail.unit_price %></td>
     <td><%= p_detail.purchase_id %></td>
     <td><%= link_to 'Destroy', p_detail, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger btn-small" %></td>
   </tr>

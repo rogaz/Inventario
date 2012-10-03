@@ -1,7 +1,48 @@
-<h1>New detail</h1>
+<%= link_to 'Eliminar Venta', {:controller => "details", :action => "delete_sale"}, :confirm => "¿Desea eliminar venta?", :method => :delete, :class => "btn btn-danger" %>
+<h2>Agregar Producto a la Venta</h2>
 
 <%= render 'form' %>
-<%= render 'sales' %>
 
+<% unless @details.empty? %>
 
-<%= link_to 'Back', details_path %>
+<h1>Productos agregados</h1>
+
+<table class="table table-bordered table-condensed">
+  <tr>
+    <th>Unit Price</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Total de Producto</th>
+    <th>Sale</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @details.each do |detail| %>
+  <tr>
+    <td><%= detail.unit_price %></td>
+    <td><%= detail.product.size.to_s + " " + detail.product.product_type.type_of_products %></td>
+    <td><%= detail.quantity %></td>
+    <td><%= detail.quantity * detail.unit_price %></td>
+    <td><%= detail.sale_id %></td>
+    <td><%= link_to 'Show', detail %></td>
+    <td><%= link_to 'Edit', edit_detail_path(detail) %></td>
+    <td><%= link_to 'Destroy', detail, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+  
+<% end %>
+
+<%= form_tag(close_sale_path, :method => "put") do %>
+<div class="form-horizontal">
+  <div class="control-group">
+    <div class="control-label"><%= label_tag "Cliente" %></div>
+    <div class="controls"><%= collection_select(:sale, :customer_id, Customer.all, :id, :name, :prompt => true) %></div>
+  </div>
+  <div class="control-group">
+    <div class="controls"><%= submit_tag "Guardar Venta", :class => "btn btn-success" %></div>
+  </div>
+</div>
+<% end %>
