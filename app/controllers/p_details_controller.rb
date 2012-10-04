@@ -37,7 +37,7 @@ class PDetailsController < ApplicationController
       session[:purchase_id] = @purchase.id
       session[:created_purchase] = "true"
     end
-    @p_details = PDetail.where(:purchase_id => session[:purchase_id])
+    @p_details = PDetail.where(:purchase_id => session[:purchase_id]).order("created_at DESC")
     
 
     respond_to do |format|
@@ -56,14 +56,31 @@ class PDetailsController < ApplicationController
   def create
     @p_detail = PDetail.new(params[:p_detail])
     @p_detail.purchase_id = session[:purchase_id]
+    
+    correcto_quantity = true
+    correcto_unit_price = true
 
+    correcto_quantity = false if params[:p_detail][:quantity] == "" || params[:p_detail][:quantity][/a-zA-Z+/]
+    correcto_quantity = false if !params[:p_detail][:quantity][/(^[\d]+$)/]
+    
+
+    correcto_unit_price = false if params[:p_detail][:unit_price] == "" || params[:p_detail][:unit_price][/a-zA-Z+/]
+    correcto_unit_price = false if !params[:p_detail][:unit_price][/(^[\d]+.?[\d]{1,3}$)|(^[\d]+$)/]
+      
+    
     respond_to do |format|
-      if @p_detail.save
+      if correcto_quantity == true && correcto_unit_price == true
+        @p_detail.save
         format.html { redirect_to new_p_detail_path }
-        format.json { render json: @p_detail, status: :created, location: @p_detail }
+        #format.json { render json: @p_detail, status: :created, location: @p_detail }
       else
-        format.html { render action: "new" }
-        format.json { render json: @p_detail.errors, status: :unprocessable_entity }
+        flash[:error] = "Error en el campo 'Precio Unitario' no se admite este valor '"+params[:p_detail][:unit_price]+"'" if !params[:p_detail][:unit_price][/(^[\d]+.?[\d]{1,3}$)|(^[\d]+$)/]
+        flash[:error] = "El campo de 'Precio Unitario' esta vacio" if params[:p_detail][:unit_price] == ""
+        flash[:error] = "Error en el campo de 'Cantidad' no se admite este valor '"+params[:p_detail][:quantity]+"'" if !params[:p_detail][:quantity][/(^[\d]+$)/]
+        flash[:error] = "El campo de 'Cantidad' esta vacio" if params[:p_detail][:quantity] == ""
+
+        format.html { redirect_to new_p_detail_path }
+        #format.json { render json: @p_detail.errors, status: :unprocessable_entity }
       end
     end
   end

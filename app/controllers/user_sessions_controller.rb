@@ -23,6 +23,12 @@ class UserSessionsController < ApplicationController
       session[:purchase_id] = nil
       session[:created_purchase] = nil
     end
+
+    if session[:created_sale] == "true"
+      Sale.find(session[:sale_id]).destroy
+      session[:sale_id] = nil
+      session[:created_sale] = nil
+    end
     current_user_session.destroy
     redirect_to signin_path
   end

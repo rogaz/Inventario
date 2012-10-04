@@ -63,12 +63,27 @@ class DetailsController < ApplicationController
     @detail = Detail.new(params[:detail])
     @detail.sale_id = session[:sale_id]
 
+    correcto_quantity = true
+    correcto_unit_price = true
+
+    correcto_quantity = false if params[:detail][:quantity] == "" || params[:detail][:quantity][/a-zA-Z+/]
+    correcto_quantity = false if !params[:detail][:quantity][/(^[\d]+$)/]
+
+
+    correcto_unit_price = false if params[:detail][:unit_price] == "" || params[:detail][:unit_price][/a-zA-Z+/]
+    correcto_unit_price = false if !params[:detail][:unit_price][/(^[\d]+.?[\d]{1,3}$)|(^[\d]+$)/]
+
     respond_to do |format|
-      if @detail.save
+      if correcto_quantity == true && correcto_unit_price == true
+        @detail.save
         format.html { redirect_to new_detail_path }
         format.json { render json: @detail, status: :created, location: @detail }
       else
-        format.html { render action: "new" }
+        flash[:error] = "Error en el campo 'Precio Unitario' no se admite este valor '"+params[:detail][:unit_price]+"'" if !params[:detail][:unit_price][/(^[\d]+.?[\d]{1,3}$)|(^[\d]+$)/]
+        flash[:error] = "El campo de 'Precio Unitario' esta vacio" if params[:detail][:unit_price] == ""
+        flash[:error] = "Error en el campo de 'Cantidad' no se admite este valor '"+params[:detail][:quantity]+"'" if !params[:detail][:quantity][/(^[\d]+$)/]
+        flash[:error] = "El campo de 'Cantidad' esta vacio" if params[:detail][:quantity] == ""
+        format.html { redirect_to new_detail_path }#render action: "new" }
         format.json { render json: @detail.errors, status: :unprocessable_entity }
       end
     end
@@ -96,6 +111,7 @@ class DetailsController < ApplicationController
     @detail = Detail.find(params[:id])
     @detail.destroy
 
+
     respond_to do |format|
       format.html { redirect_to new_detail_path }
       format.json { head :no_content }
@@ -108,17 +124,22 @@ class DetailsController < ApplicationController
     total = 0
     @details.each do |detail|
       total += (detail.unit_price * detail.quantity)
-    end
     @sale.total = total
     @sale.customer_id = params[:sale][:customer_id]
-    @sale.save
-    
-    session[:sale_id] = nil
-    session[:created_sale] = nil
+    end
 
     respond_to do |format|
-      format.html { redirect_to sales_path }
-      format.json { head :no_content }
+      if params[:sale][:customer_id] != ""
+        @sale.save
+        session[:sale_id] = nil
+        session[:created_sale] = nil
+        format.html { redirect_to sales_path }
+        format.json { head :no_content }
+      else
+        flash[:error] = "Debe elegir un cliente para la venta"
+        format.html { redirect_to new_detail_path }
+        format.json { head :no_content }
+      end
     end
   end
 

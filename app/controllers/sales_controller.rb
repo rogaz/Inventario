@@ -80,6 +80,9 @@ class SalesController < ApplicationController
     @sale = Sale.find(params[:id])
     @sale.destroy
 
+    session[:sale_id] = nil
+    session[:created_sale] = nil
+
     respond_to do |format|
       format.html { redirect_to sales_url }
       format.json { head :no_content }
