@@ -5,11 +5,10 @@
 
 <table class="table table-bordered table-condensed">
   <tr>
-    <th>Date</th>
+    <th>Fecha</th>
     <th>Total</th>
-    <th>Customer</th>
-    <th>Customer ID</th>
-    <th></th>
+    <th>Cliente</th>
+    <th>Cliente ID</th>
     <th></th>
     <th></th>
   </tr>
@@ -17,7 +16,7 @@
 <% @sales.each_with_index do |sale, index| %>
 
   <tr>
-    <td><%= sale.date %></td>
+    <td><%= fecha_con_formato(sale.date) %></td>
     <td><%= sale.total %></td>
     <% if index+1 == ultimo and session[:created_sale] == "true" %>
       <td></td>
@@ -26,9 +25,8 @@
       <td><%= sale.customer.name %></td>
       <td><%= sale.customer_id %></td>
     <% end %>
-    <td><%= link_to 'Show', sale %></td>
-    <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-    <td><%= link_to 'Destroy', sale, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Mostrar Detalles', sale, :class => "btn btn-info" %></td>
+    <td><%= link_to 'Eliminar', sale, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
